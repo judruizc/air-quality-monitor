@@ -1,6 +1,6 @@
 import time
 from datetime import datetime
-from RPi_Air_Quality_Sensor.sds011 import *
+from sensor.sds011 import *
 import aqi
 
 sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
