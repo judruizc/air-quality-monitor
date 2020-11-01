@@ -1,0 +1,37 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "cd4fc096adeb4c655b55a773878e7031a3a524ab54d3922e88cc53e459d2b81b"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.8"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "pyserial": {
+            "hashes": [
+                "sha256:6e2d401fdee0eab996cf734e67773a0143b932772ca8b42451440cfed942c627",
+                "sha256:e0770fadba80c31013896c7e6ef703f72e7834965954a78e71a3049488d4d7d8"
+            ],
+            "index": "pypi",
+            "version": "==3.4"
+        },
+        "python-aqi": {
+            "hashes": [
+                "sha256:141a03a0fed48880dc8706ca57b03f30fa91ab60e9330474bf9c9a8fb9b96020",
+                "sha256:325ff7a76b66b9045e042c8086e4debd1422079b9a72cc5a072951a67b344904"
+            ],
+            "index": "pypi",
+            "version": "==0.6.1"
+        }
+    },
+    "develop": {}
+}
