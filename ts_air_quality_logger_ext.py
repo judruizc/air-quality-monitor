@@ -37,7 +37,7 @@ def save_log():
 
 data = get_data(3)
 print(f"Air pollution - Raw: {data}")
-data_human = conv_aqi(data)
+data_human = conv_aqi(data[0], data[1])
 print(f"Air pollution - human: {data_human}")
 
             
