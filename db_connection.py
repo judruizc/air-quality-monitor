@@ -1,4 +1,5 @@
 from influxdb import InfluxDBClient
+import requests
 import sys
 import time
 import datetime
