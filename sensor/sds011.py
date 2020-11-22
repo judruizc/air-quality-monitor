@@ -1,4 +1,4 @@
-"""This module provides an abstraction for the SDS011 air partuclate densiry sensor.
+"""This module provides an abstraction for the SDS011 air particulate density sensor.
 """
 import struct
 import serial

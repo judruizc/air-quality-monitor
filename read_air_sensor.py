@@ -2,11 +2,12 @@ import time
 from datetime import datetime
 from sensor.sds011 import *
 import aqi
+from db_connection import write_points
 
 sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
 
 def get_data(n=3):
-        sensor.sleep(sleep=False)
+        sensor.sleep(read=True, sleep=False)
         pmt_2_5 = 0
         pmt_10 = 0
         time.sleep(10)
@@ -27,17 +28,23 @@ def conv_aqi(pmt_2_5, pmt_10):
     aqi_10 = aqi.to_iaqi(aqi.POLLUTANT_PM10, str(pmt_10))
     return aqi_2_5, aqi_10
 
+def write_to_db(pm_2_5, pm_10):
+    data_write = {'pm_2_5': pm_2_5,
+                  'pm_10': pm_10
+                  }
 
-def save_log():        
-    with open("/Users/juan.ruiz/Projects/Personal/air-quality-monitor/air_quality.csv", "a") as log:
-        dt = datetime.now()
-        log.write("{},{},{},{},{}\n".format(dt, pmt_2_5, aqi_2_5, pmt_10, aqi_10))
-    log.close()
+    write_points(measurement='air_pollution', sensor_location='Wintergarden', **data_write)
 
 
-data = get_data(3)
-print(f"Air pollution - Raw: {data}")
-data_human = conv_aqi(data[0], data[1])
-print(f"Air pollution - human: {data_human}")
+def main():
+    data = get_data(3)
+    print(f"Air pollution - Raw: {data}")
+    data_human = conv_aqi(data[0], data[1])
+    print(f"Air pollution - human: {data_human}")
+
+
+if __name__ == '__main__':
+    main()
+
 
             
