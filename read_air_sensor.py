@@ -4,23 +4,14 @@ from sensor.sds011 import *
 import aqi
 # from db_connection import write_points
 
-sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
+sensor = SDS011("/dev/ttyUSB1", use_query_mode=True)
 
-def get_data(n=3):
-        sensor.sleep(read=True, sleep=False)
-        pmt_2_5 = 0
-        pmt_10 = 0
+def get_data():
+        sensor.sleep(sleep=False)
         time.sleep(10)
-        for i in range (n):
-            x = sensor.query()
-            pmt_2_5 = pmt_2_5 + x[0]
-            pmt_10 = pmt_10 + x[1]
-            time.sleep(2)
-        pmt_2_5 = round(pmt_2_5/n, 1)
-        pmt_10 = round(pmt_10/n, 1)
+        pm_2_5, pm_10 = sensor.query()
         sensor.sleep(sleep=True)
-        time.sleep(2)
-        return pmt_2_5, pmt_10
+        return pm_2_5, pm_10
     
 
 def conv_aqi(pmt_2_5, pmt_10):
@@ -37,7 +28,7 @@ def conv_aqi(pmt_2_5, pmt_10):
 
 
 def main():
-    data = get_data(3)
+    data = get_data()
     print(f"Air pollution - Raw: {data}")
     data_human = conv_aqi(data[0], data[1])
     print(f"Air pollution - human: {data_human}")
