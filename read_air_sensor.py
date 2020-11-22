@@ -4,7 +4,7 @@ from sensor.sds011 import *
 import aqi
 # from db_connection import write_points
 
-sensor = SDS011("/dev/ttyUSB1", use_query_mode=True)
+sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
 
 def get_data():
         sensor.sleep(sleep=False)
