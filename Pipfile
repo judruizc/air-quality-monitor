@@ -11,6 +11,7 @@ python-aqi = "*"
 flask = "*"
 flask-apscheduler = "*"
 influxdb-client = "*"
+influxdb = "*"
 
 [requires]
 python_version = "3.7"
