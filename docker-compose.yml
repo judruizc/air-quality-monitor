@@ -15,12 +15,15 @@ services:
       context: .
       dockerfile: dockerfile
     container_name: read_air_sensor
+    privileged: true
     hostname: read_air_sensor
     links:
       - influxdb
     networks:
       - monitoring
     restart: always
+    volumes:
+      - /dev:/dev
   influxdb:
     image: influxdb:latest
     container_name: influxdb

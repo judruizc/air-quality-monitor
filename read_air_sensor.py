@@ -11,7 +11,7 @@ app = Flask(__name__)
 # turn_off_usb_cmd = 'sudo /home/pi/juan/uhubctl/uhubctl -l 1-1 -a off'
 # turn_on_usb_cmd = 'sudo /home/pi/juan/uhubctl/uhubctl -l 1-1 -a on'
 
-@scheduler.task('cron', id='read_scheduler', day='*', hour='*', minute='*/10')
+@scheduler.task('cron', id='read_scheduler', day='*', hour='*', minute='*/1')
 def read():
     data = get_data()
     print(f"Air pollution - Raw: {data}")
