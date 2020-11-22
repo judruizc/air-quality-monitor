@@ -1,7 +1,7 @@
 import time
 from sensor.sds011 import *
 import aqi
-import os
+# import os
 from flask import Flask
 from flask_apscheduler import APScheduler
 from db_connection import write_points
@@ -45,5 +45,5 @@ scheduler.init_app(app)
 scheduler.start()
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host="0.0.0.0", debug=False)
 
