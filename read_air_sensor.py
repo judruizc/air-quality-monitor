@@ -1,8 +1,12 @@
 import time
-from datetime import datetime
 from sensor.sds011 import *
 import aqi
+from flask import Flask
+from flask_apscheduler import APScheduler
 # from db_connection import write_points
+
+scheduler = APScheduler()
+app = Flask(__name__)
 
 sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
 
@@ -26,17 +30,18 @@ def conv_aqi(pmt_2_5, pmt_10):
 #
 #     write_points(measurement='air_pollution', sensor_location='Wintergarden', **data_write)
 
+@scheduler.task('cron', id='read_scheduler', day='*', hour='*', minute='*/1', second=5)
+def read():
+    data = get_data()
+    print(f"Air pollution - Raw: {data}")
+    data_human = conv_aqi(data[0], data[1])
+    print(f"Air pollution - human: {data_human}")
 
-def main():
-    for i in range (4):
-        data = get_data()
-        print(f"Air pollution - Raw: {data}")
-        data_human = conv_aqi(data[0], data[1])
-        print(f"Air pollution - human: {data_human}")
-        time.sleep(2)
+scheduler.init_app(app)
+scheduler.start()
 
 if __name__ == '__main__':
-    main()
+    app.run(debug=False, port=4002)
 
 
             
