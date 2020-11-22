@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 pyserial = "*"
 python-aqi = "*"
+flask = "*"
+flask-apscheduler = "*"
+influxdb-client = "*"
 
 [requires]
 python_version = "3.7"
