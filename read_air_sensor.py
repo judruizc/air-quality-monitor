@@ -28,11 +28,12 @@ def conv_aqi(pmt_2_5, pmt_10):
 
 
 def main():
-    data = get_data()
-    print(f"Air pollution - Raw: {data}")
-    data_human = conv_aqi(data[0], data[1])
-    print(f"Air pollution - human: {data_human}")
-
+    for i in range (4):
+        data = get_data()
+        print(f"Air pollution - Raw: {data}")
+        data_human = conv_aqi(data[0], data[1])
+        print(f"Air pollution - human: {data_human}")
+        time.sleep(2)
 
 if __name__ == '__main__':
     main()
