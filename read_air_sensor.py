@@ -29,10 +29,8 @@ def get_data():
 
 
 def conv_aqi(pmt_2_5, pmt_10):
-    aqi_2_5_epa = aqi.to_iaqi(aqi.POLLUTANT_PM25, str(pmt_2_5))
-    aqi_10_epa = aqi.to_iaqi(aqi.POLLUTANT_PM10, str(pmt_10))
-    aqi_2_5_china = aqi.to_iaqi(aqi.POLLUTANT_PM25, str(pmt_2_5), algo=aqi.ALGO_MEP)
-    aqi_10_china = aqi.to_iaqi(aqi.POLLUTANT_PM10, str(pmt_10), algo=aqi.ALGO_MEP)
+    aqi_2_5 = aqi.to_iaqi(aqi.POLLUTANT_PM25, str(pmt_2_5))
+    aqi_10 = aqi.to_iaqi(aqi.POLLUTANT_PM10, str(pmt_10))
     return aqi_2_5, aqi_10
 
 def write_to_db(pm_2_5, pm_10):
