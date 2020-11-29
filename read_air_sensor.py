@@ -13,11 +13,16 @@ app = Flask(__name__)
 
 
 def get_data():
-    sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
+    try:
+        sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
+    except IndexError:
+        print("Opening port..")
+        sensor.open()
     sensor.sleep(sleep=False)
     time.sleep(10)
     pm_2_5, pm_10 = sensor.query()
     sensor.sleep(sleep=True)
+    print("Closing port..")
     sensor.close()
     return pm_2_5, pm_10
 

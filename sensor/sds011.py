@@ -49,6 +49,10 @@ class SDS011(object):
         """
         self.ser.write(cmd_bytes)
 
+    def open(self):
+        """opens serial port"""
+        self.ser.open()
+    
     def close(self):
         """Closes the serial port"""
         self.ser.close()
