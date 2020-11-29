@@ -13,17 +13,10 @@ app = Flask(__name__)
 
 
 def get_data():
-    try:
-        print("Opening port..")
-        sensor.open()
-    except serial.SerialException:
-        print("Port already open, starting sensor")
-        sensor.sleep(sleep=False)
-        time.sleep(10)
-        pm_2_5, pm_10 = sensor.query()
+    sensor.sleep(sleep=False)
+    time.sleep(10)
+    pm_2_5, pm_10 = sensor.query()
     sensor.sleep(sleep=True)
-    print("Closing port..")
-    sensor.close()
     return pm_2_5, pm_10
 
 
