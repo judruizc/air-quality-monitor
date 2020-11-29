@@ -13,11 +13,8 @@ app = Flask(__name__)
 
 
 def get_data():
-    try:
-        sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
-    except IndexError:
-        print("Opening port..")
-        sensor.open()
+    print("Opening port..")
+    sensor.open()
     sensor.sleep(sleep=False)
     time.sleep(10)
     pm_2_5, pm_10 = sensor.query()
@@ -55,4 +52,5 @@ scheduler.init_app(app)
 scheduler.start()
 
 if __name__ == '__main__':
+    sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
     app.run(host="0.0.0.0", debug=False)
