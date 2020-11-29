@@ -34,7 +34,7 @@ def write_to_db(pm_2_5, pm_10):
     write_points(measurement='air_pollution', sensor_location='Wintergarten', **data_write)
 
 
-@scheduler.task('cron', id='read_scheduler', day='*', hour='*', minute='*/1')
+@scheduler.task('cron', id='read_scheduler', day='*', hour='*', minute='*/10')
 def read():
     print("Attempt to read data..")
     data = get_data()
