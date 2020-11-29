@@ -16,7 +16,7 @@ def get_data():
     try:
         print("Opening port..")
         sensor.open()
-    except SerialException:
+    except serial.SerialException:
         print("Port already open, starting sensor")
         sensor.sleep(sleep=False)
         time.sleep(10)
