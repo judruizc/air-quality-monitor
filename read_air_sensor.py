@@ -18,6 +18,7 @@ def get_data():
     time.sleep(10)
     pm_2_5, pm_10 = sensor.query()
     sensor.sleep(sleep=True)
+    sensor.close()
     return pm_2_5, pm_10
 
 

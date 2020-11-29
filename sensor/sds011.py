@@ -49,6 +49,10 @@ class SDS011(object):
         """
         self.ser.write(cmd_bytes)
 
+    def close(self):
+        """Closes the serial port"""
+        self.ser.close()
+
     def _get_reply(self):
         """Read reply from device."""
         raw = self.ser.read(size=10)
@@ -167,4 +171,3 @@ class SDS011(object):
             if d[0:1] == b"\xc0":
                 data = self._process_frame(byte + d)
                 return data
-
